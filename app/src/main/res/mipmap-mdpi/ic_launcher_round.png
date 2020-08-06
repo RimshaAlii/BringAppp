@@ -1,0 +1,84 @@
+package com.example.july27;
+
+import android.content.ClipData;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+
+public class DatabaseHelper  extends SQLiteOpenHelper {
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "Grocery.db";
+    //Table for storing userlists name
+    private static final String CREATE_TBL__USER_LIST = "CREATE TABLE "
+            + DatabaseContract.userlist.TABLE_NAME + " ("
+            + DatabaseContract.userlist.USER_LISTID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + DatabaseContract.userlist.USER_LISTNAME + " TEXT NOT NULL) ";
+    //Table for storing user list items details
+    private static final String CREATE_TBL_USER_ITEM = "CREATE TABLE "
+            + DatabaseContract.useritem.TABLE_NAME + " ("
+            + DatabaseContract.useritem.COL_ITEMID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + DatabaseContract.useritem.COL_ITEMNAME + " TEXT NOT NULL,"
+            + DatabaseContract.useritem.USER_LIST_ITEM_ID + " INTEGER,"
+            + DatabaseContract.useritem.COL_ITEMPRICE + " TEXT ,"
+            + DatabaseContract.useritem.COL_ITEMQUANTITY + " TEXT )";
+    //Table for storing mainlist items
+    private static final String CREATE_TBL_MAIN_LIST = "CREATE TABLE "
+            + DatabaseContract.mainlist.TABLE_NAME + " ("
+            + DatabaseContract.mainlist.CATEGORY_NAME+ " TEXT NOT NULL, "
+            + DatabaseContract.mainlist.ITEM_NAME + " TEXT NOT NULL)";
+//constructor
+    public DatabaseHelper(@Nullable Context context) {
+        super(context, DATABASE_NAME, null,DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(CREATE_TBL__USER_LIST);
+        sqLiteDatabase.execSQL(CREATE_TBL_USER_ITEM);
+
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+    //Function to add a new list in the database
+    public boolean addlist(List list)
+    {
+        long row=0;
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put(DatabaseContract.userlist.USER_LISTNAME,list.getListname());
+        try{
+            row=sqLiteDatabase.insert(DatabaseContract.userlist.TABLE_NAME,null,values);
+        }catch (SQLException e)
+        {
+            Log.d("TAG",e.getMessage());
+        }
+        if(row==-1)
+        {
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+    //function to add an item in the list of a database
+   public boolean additem(Item item)
+   {
+       long row=0;
+       SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+       ContentValues values=new ContentValues();
+       values.put(DatabaseContract.useritem.COL_ITEMNAME,item.getItemname());
+       values.put(DatabaseContract.useritem.USER_LIST_ITEM_ID,item.getItemlistid());
+       values.put(DatabaseContract.useritem.COL_ITEMPRICE,item.ge

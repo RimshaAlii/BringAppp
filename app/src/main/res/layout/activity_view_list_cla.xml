@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/alllistviewlayout"
+    android:orientation="vertical"
+    android:padding="30dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Lists!"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:fontFamily="@font/croissant_one"
+        android:textColor="@color/Brown"
+        android:textStyle="italic"
+        android:paddingBottom="10dp"
+        ></TextView>
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarSize="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/alllistview"
+        android:listSelector="@drawable/button_background"
+        android:divider="@color/splashcolor"
+        android:dividerHeight="2dp"
+        android:padding="10dp"
+        android:theme="@style/AppTheme"></com.baoyz.swipemenulistview.SwipeMenuListView>
+</LinearLayout>

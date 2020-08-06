@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/introlayout"
+    android:background="@color/White">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="506dp"
+        android:layout_alignParentBottom="false"
+        android:layout_marginBottom="85dp">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/viewpager"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="301dp"
+        android:layout_marginLeft="301dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="-123dp"
+        android:background="@color/White"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
+        android:drawableTint="@color/Brown"
+        android:text="@string/introbutton"
+        android:textColor="@color/Brown" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_indicator"
+        android:layout_width="241dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/viewpager"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginBottom="-126dp"
+        app:tabBackground="@drawable/indicator_selector">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <Button
+        android:visibility="invisible"
+        android:background="@drawable/start_button_gradient"
+        android:id="@+id/button_start"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/viewpager"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="124dp"
+        android:layout_marginRight="124dp"
+        android:layout_marginBottom="-60dp"
+        android:text="Get Started" />
+
+</RelativeLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/additemdialoglayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@drawable/dialog_background"
+    android:padding="20dp">
+    <EditText
+        android:id="@+id/itemnamee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Item Name"
+        android:fontFamily="@font/croissant_one"
+        android:textColor="@color/Brown">
+    </EditText>
+
+    <EditText
+        android:id="@+id/itemprice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemnamee"
+        android:hint="Item Price"
+        android:fontFamily="@font/croissant_one"
+        android:textColor="@color/Brown"></EditText>
+    <EditText
+        android:id="@+id/itemquantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemprice"
+        android:hint="Item Quantity(Optional)"
+        android:fontFamily="@font/croissant_one"
+        android:textColor="@color/Brown"></EditText>
+</RelativeLayout>

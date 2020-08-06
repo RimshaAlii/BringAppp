@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textViewlistname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/croissant_one"
+        android:text="ListName"
+        android:textColor="@color/Brown"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/textViewlistdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/croissant_one"
+        android:text="Date"
+        android:textColor="@color/Brown"
+        android:textSize="20dp" />
+</GridLayout>

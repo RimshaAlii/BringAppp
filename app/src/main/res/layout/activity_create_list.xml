@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/createlistlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/listname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/croissant_one"></TextView>
+    <ListView
+        android:padding="30dp"
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:divider="@color/splashcolor"
+        android:dividerHeight="2dp">
+    </ListView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/text_view_total_price"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/dialog_background"
+            android:fontFamily="@font/croissant_one"
+            android:gravity="center"
+            android:text="Total Price"
+            android:textColor="@color/Brown"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutforbuttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/additem"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Add Item"
+            android:onClick="opendialog"
+            android:background="@drawable/dialog_background"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/Brown"
+            android:fontFamily="@font/croissant_one"></Button>
+        <Button
+            android:id="@+id/addmainlist"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Mainlist"
+            android:onClick="gotomainlist"
+            android:textStyle="bold"
+            android:textColor="@color/Brown"
+            android:fontFamily="@font/croissant_one"
+            android:background="@drawable/dialog_background"></Button>
+    </LinearLayout>
+</LinearLayout>

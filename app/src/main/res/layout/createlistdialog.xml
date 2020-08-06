@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/createlistdialoglayout"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center"
+    android:padding="30dp"
+    android:background="@drawable/dialog_background">
+    <EditText
+        android:id="@+id/listnameedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Listname"
+        android:fontFamily="@font/croissant_one"
+        android:textColor="@color/Brown"></EditText>
+    <EditText
+        android:id="@+id/listbudget"
+        android:layout_below="@id/listnameedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Budget"
+        android:fontFamily="@font/croissant_one"
+        android:textColor="@color/Brown"></EditText>
+    <TextView
+        android:id="@+id/dateoflist"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/listbudget"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/croissant_one"
+        android:textColor="@color/Brown"
+        android:text="Date"></TextView>
+</RelativeLayout>
