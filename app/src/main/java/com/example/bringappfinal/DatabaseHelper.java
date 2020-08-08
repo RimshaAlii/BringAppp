@@ -35,6 +35,7 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
             + DatabaseContract.useritem.USER_LIST_ITEM_ID + " INTEGER,"
             + DatabaseContract.useritem.COL_ITEMPRICE + " TEXT ,"
             + DatabaseContract.useritem.COL_ITEMQUANTITY + " TEXT )";
+
     //Table for storing mainlist categories
     private static final String CREATE_TBL_MAIN_LIST = "CREATE TABLE "
             + DatabaseContract.mainlist.TABLE_NAME + " ("
@@ -238,8 +239,73 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         if(i>0)
             return true;
         return false;
-
-
     }
+    //function to update list
+    public boolean updatelist(String listid,List list)
+    {
+        long row=0;
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
 
+        ContentValues values=new ContentValues();
+        values.put(DatabaseContract.userlist.USER_LISTNAME,list.getListname());
+        values.put(DatabaseContract.userlist.USER_LISTDATE,list.getListdate());
+        values.put(DatabaseContract.userlist.USER_BUDGET,list.getBudget());
+        String selection=DatabaseContract.userlist.USER_LISTID+" = ?";
+        String[] selectionArgs={listid};
+
+        try{
+            row=sqLiteDatabase.update(DatabaseContract.userlist.TABLE_NAME,values,selection,selectionArgs);
+        }catch (SQLException e)
+        {
+            Log.d("TAG",e.getMessage());
+        }
+        if(row==-1)
+        {
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public boolean deleteitem(String id)
+    {
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        String selection=DatabaseContract.useritem.COL_ITEMID+" = ?";
+        String[] selectionArgs={id};
+        int i=0;
+        try{
+            i=sqLiteDatabase.delete(DatabaseContract.useritem.TABLE_NAME,selection,selectionArgs);
+        }catch(SQLiteException e)
+        {
+            Log.d("TAG",e.getMessage());
+        }
+        if(i>0)
+            return true;
+        return false;
+    }
+    //function to update list
+    public boolean updateitem(Item item)
+    {
+        long row=0;
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+
+        ContentValues values=new ContentValues();
+        values.put(DatabaseContract.useritem.COL_ITEMNAME,item.getItemname());
+        values.put(DatabaseContract.useritem.COL_ITEMPRICE,item.getItemprice());
+        values.put(DatabaseContract.useritem.COL_ITEMQUANTITY,item.getItemquantity());
+        String selection=DatabaseContract.useritem.COL_ITEMID+" = ?";
+        String[] selectionArgs={String.valueOf(item.getItemid())};
+
+        try{
+            row=sqLiteDatabase.update(DatabaseContract.useritem.TABLE_NAME,values,selection,selectionArgs);
+        }catch (SQLException e)
+        {
+            Log.d("TAG",e.getMessage());
+        }
+        if(row==-1)
+        {
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

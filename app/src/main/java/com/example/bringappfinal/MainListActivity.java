@@ -64,7 +64,7 @@ public class MainListActivity extends AppCompatActivity {
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(i));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("Adventure: "+i);
+            subCategoryItem.setSubCategoryName("Dairy Products: "+i);
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);
@@ -72,7 +72,7 @@ public class MainListActivity extends AppCompatActivity {
 
         dataItem = new DataCategory();
         dataItem.setCategoryId("2");
-        dataItem.setCategoryName("Art");
+        dataItem.setCategoryName("Food & beverages");
         arSubCategory = new ArrayList<>();
         String[] listnames={"Milk","Butter"};
         for(int j = 1; j < 6; j++) {
@@ -80,7 +80,7 @@ public class MainListActivity extends AppCompatActivity {
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(j));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("Art: "+j);
+            subCategoryItem.setSubCategoryName("Food & beverages: "+j);
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);

@@ -24,6 +24,19 @@ import java.util.Date;
 import java.util.Locale;
 
 public class AddListDialog extends AppCompatDialogFragment {
+    String listid="d";
+    String listname;
+    String list_budget;
+
+    public AddListDialog(String listid, String listname, String list_budget) {
+        this.listid = listid;
+        this.listname = listname;
+        this.list_budget = list_budget;
+    }
+
+    public AddListDialog() {
+    }
+
     EditText listnameedit;
     EditText budgetedit;
     TextView datelist;
@@ -39,7 +52,12 @@ public class AddListDialog extends AppCompatDialogFragment {
         datelist.setText(date);
         listnameedit=(EditText) view.findViewById(R.id.listnameedit);
         budgetedit=(EditText) view.findViewById(R.id.listbudget);
+        if(!listid.isEmpty())
+        {
+            listnameedit.setText(listname);
+            budgetedit.setText(list_budget);
 
+        }
         builder.setView(view)
                 .setTitle("Add List Name")//title of dialogbox
                 //cancel button for dialog
@@ -58,7 +76,7 @@ public class AddListDialog extends AppCompatDialogFragment {
                         //validating that list name must be given
                         if((listname.isEmpty())||budget.isEmpty())
                         {
-                            Toast.makeText(getActivity(), "Sorry! You have to give me List name & Budget", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Sorry! You have to Enter List name & Budget", Toast.LENGTH_LONG).show();
                         }
                         else{
                             listener.applyTexts(listname,budget,date);

@@ -34,7 +34,7 @@ public class ViewListClass extends AppCompatActivity implements AddListDialog.Ad
     ArrayList<List> getlistarray = new ArrayList<>();
     //  ArrayList<String> listnames=new ArrayList<>();
     SQLiteDatabase sqLiteDatabase;
-    DatabaseHelper db;
+
     Intent showitems;
     Activity activity;
     AlertDialog.Builder builder;
@@ -50,8 +50,11 @@ public class ViewListClass extends AppCompatActivity implements AddListDialog.Ad
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_list_cla);
-        showitems = new Intent(this, CreateListActivity.class);
+        listedit=(EditText)  findViewById(R.id.listnameedit);
+        listbudget=(EditText)  findViewById(R.id.listbudget);
+        datelist=(TextView) findViewById(R.id.dateoflist);
 
+        showitems = new Intent(this, CreateListActivity.class);
         getListdetail();
         activity=this;
 
@@ -74,10 +77,7 @@ public class ViewListClass extends AppCompatActivity implements AddListDialog.Ad
         return null;
     }
 
-    @Override
-    public void applyTexts(String listname, String budget, String date) {
 
-    }
 
 
     class showlists extends AsyncTask {
@@ -104,25 +104,22 @@ public class ViewListClass extends AppCompatActivity implements AddListDialog.Ad
                  //   email=weightEntries.get(position).getEmail().trim();
                     switch (index) {
                         case 0:
-                          /*  Intent i2=new Intent(WeightLog.this, EnterWeight.class);
-                            i2.putExtra("weight",weightEntries.get(position).getWeight());
-                            i2.putExtra("date",weightEntries.get(position).getDate());
-                            i2.putExtra("time",weightEntries.get(position).getTime());
-                            i2.putExtra("id",weightEntries.get(position).getId());
-                            startActivity(i2);
-                            finish();*/
+                            AddListDialog addlistDialog=new AddListDialog();
+                            addlistDialog.show(getSupportFragmentManager(),"List Name Dialog");
+
+
                             break;
                         case 1:
                             builder=new AlertDialog.Builder(ViewListClass.this);
-                            builder.setMessage("Are you sure you want to delete this record?");
+                            builder.setMessage("Are you sure you want to delete this List?");
                             builder.setCancelable(false);
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                   boolean flag=db.deleteListRecord(id);
+                                   boolean flag=databaseHelper.deleteListRecord(id);
                                     if(flag)
                                     {
-                                        Toast.makeText(getApplicationContext(), "Record Deleted ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "List Deleted ", Toast.LENGTH_SHORT).show();
                                         finish();
                                         startActivity(getIntent());
                                     }
@@ -164,6 +161,22 @@ public class ViewListClass extends AppCompatActivity implements AddListDialog.Ad
             return null;
         }
     }
+    @Override
+    public void applyTexts(String listname, String budget, String date) {
+        list.setListname(listname);
+        list.setListdate(date);
+        list.setBudget(budget);
+        boolean flag1=databaseHelper.updatelist(id,list);
+        if(flag1)
+        {
+            Toast.makeText(this,"List Updated",Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(getIntent());
+        }
+        else{
+            Toast.makeText(this,"List Not updated",Toast.LENGTH_SHORT).show();
+        }
+    }
     //Swipemenu options
     SwipeMenuCreator creator = new SwipeMenuCreator() {
 
@@ -172,29 +185,24 @@ public class ViewListClass extends AppCompatActivity implements AddListDialog.Ad
             // create "open" item
             SwipeMenuItem openItem = new SwipeMenuItem(
                     getApplicationContext());
-            // set item background
             openItem.setBackground(new ColorDrawable(Color.rgb(0x3a, 0xf4,
                     0x2a)));
-            // set item width
             openItem.setWidth(170);
-            // set item title
             openItem.setTitle("Edit");
-            // set item title fontsize
             openItem.setTitleSize(18);
-            // set item title font color
             openItem.setTitleColor(Color.WHITE);
             // add to menu
             menu.addMenuItem(openItem);
-            // create "delete" item
             SwipeMenuItem deleteItem = new SwipeMenuItem(
                     getApplicationContext());
             // set item background
             deleteItem.setBackground(new ColorDrawable(Color.rgb(0xFe,
                     0x00, 0x00)));
-            // set item width
+
             deleteItem.setWidth(170);
-            // set a icon
-            //deleteItem.setIcon(R.drawable.ic_baseline_delete_24);
+            deleteItem.setTitle("Delete");
+            deleteItem.setTitleSize(18);
+            deleteItem.setTitleColor(Color.WHITE);
             // add to menu
             menu.addMenuItem(deleteItem);
         }

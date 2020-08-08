@@ -14,8 +14,8 @@ import java.util.HashMap;
 
 public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter {
 
-    public final ArrayList<ArrayList<HashMap<String, String>>> childItems;
-    private ArrayList<HashMap<String, String>> parentItems;
+    public static ArrayList<ArrayList<HashMap<String, String>>> childItems;
+    public static ArrayList<HashMap<String, String>> parentItems;
     //    private final ArrayList<HashMap<String, String>> childItems;
     private LayoutInflater inflater;
     private Activity activity;
@@ -139,6 +139,7 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
             viewHolderChild = new ViewHolderChild();
 
             viewHolderChild.tvSubCategoryName = convertView.findViewById(R.id.tvSubCategoryName);
+            viewHolderChild.tvsubcategoryPrice=convertView.findViewById(R.id.tvSubCategoryPrice);
             viewHolderChild.cbSubCategory = convertView.findViewById(R.id.cbSubCategory);
             viewHolderChild.viewDivider = convertView.findViewById(R.id.viewDivider);
             convertView.setTag(viewHolderChild);
@@ -214,6 +215,7 @@ public class MyCategoriesExpandableListAdapter extends BaseExpandableListAdapter
     private class ViewHolderChild {
 
         TextView tvSubCategoryName;
+        TextView tvsubcategoryPrice;
         CheckBox cbSubCategory;
         View viewDivider;
     }
